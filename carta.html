@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carta a mi Hermano en el Camino</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #e0f7fa;
+      background-image:
+        radial-gradient(at 40% 20%, #a7ffeb 0%, transparent 60%),
+        radial-gradient(at 80% 80%, #b2ebf2 0%, transparent 70%);
+      color: #073642;
+    }
+    .font-dancing { font-family: 'Dancing Script', cursive; }
+    .letter-paper {
+      background: linear-gradient(to bottom right, #ffffff, #e0f2f1);
+      border: 2px solid #c5b358;
+      border-radius: 15px;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .radio-label {
+      display: block;
+      padding: 1rem;
+      border: 1px solid #c5b358;
+      border-radius: 0.5rem;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      text-align: left;
+      background-color: #fff;
+      transition: all 0.2s ease;
+    }
+    .radio-label:hover {
+      background-color: #e0f2f1;
+      border-color: #009688;
+    }
+    input[type="radio"]:checked + .radio-label {
+      background-color: #b2dfdb;
+      border-color: #00796b;
+      font-weight: 600;
+    }
+    #music-toggle {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 3.2rem;
+      height: 3.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      z-index: 50;
+    }
+    #music-toggle:hover {
+      background-color: #009688;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+
+  <!-- Botón de música -->
+  <button id="music-toggle" title="Reproducir / Pausar música">🎵</button>
+  <audio id="background-music" loop>
+    <source src="https://cdn.pixabay.com/audio/2023/07/25/audio_1ec9f15f15.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="container" class="w-full max-w-md mx-auto p-4">
+
+    <!-- PREGUNTAS -->
+    <div id="password-section" class="text-center bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-lg">
+      <svg class="mx-auto h-16 w-16 text-cyan-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25v-16.5m0 0l-8.25 8.25m8.25-8.25l8.25 8.25" />
+      </svg>
+      <h1 class="font-dancing text-4xl text-gray-800 mb-2">Una Carta del Alma</h1>
+      <p class="text-gray-600 mb-4">Solo quien mira con el corazón podrá abrirla.</p>
+      <p id="warning-message" class="text-amber-700 font-semibold mb-4"></p>
+
+      <form id="love-form">
+        <!-- Pregunta 1 -->
+        <div id="question1">
+          <p class="text-teal-700 font-bold text-lg mb-4">¿Qué une verdaderamente a los hijos de Dios?</p>
+          <input type="text" id="answer1" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-cyan-400 focus:outline-none transition" placeholder="Tu respuesta aquí...">
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div id="question2" class="hidden">
+          <p class="text-teal-700 font-bold text-lg mb-4">¿Quién se va a iluminar?</p>
+          <div>
+            <input type="radio" id="q2a1" name="illumination" value="yo"><label for="q2a1" class="radio-label">Yo</label>
+            <input type="radio" id="q2a2" name="illumination" value="todos"><label for="q2a2" class="radio-label">Todos</label>
+            <input type="radio" id="q2a3" name="illumination" value="nadie"><label for="q2a3" class="radio-label">Nadie</label>
+          </div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div id="question3" class="hidden">
+          <p class="text-teal-700 font-bold text-lg mb-4">¿Qué toca hacer en la ilusión?</p>
+          <div>
+            <input type="radio" id="q3a1" name="illusion" value="nada"><label for="q3a1" class="radio-label">Nada</label>
+            <input type="radio" id="q3a2" name="illusion" value="ganar dinero"><label for="q3a2" class="radio-label">Ganar dinero</label>
+            <input type="radio" id="q3a3" name="illusion" value="buscar a dios"><label for="q3a3" class="radio-label">Buscar a Dios</label>
+            <input type="radio" id="q3a4" name="illusion" value="perdonar"><label for="q3a4" class="radio-label">Perdonar</label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-cyan-600 text-white font-bold py-3 px-4 rounded-lg mt-4 hover:bg-teal-700 transition-transform transform hover:scale-105">Siguiente</button>
+      </form>
+
+      <p id="error-message" class="text-red-600 mt-4 h-5"></p>
+      <p id="hint-message" class="text-cyan-800 mt-2 font-semibold h-5"></p>
+    </div>
+
+    <!-- CARTA -->
+    <div id="letter-section" class="hidden fade-in">
+      <div class="letter-paper">
+        <h2 class="font-dancing text-4xl text-teal-700 mb-6">Carta a mi hermano en el camino</h2>
+        <div class="text-gray-800 text-lg leading-relaxed space-y-4">
+          <p>Cada vez que me pregunto quién soy, me pierdo en las sombras de lo que creo ser...</p>
+          <p>Entonces recuerdo... que estoy con mi Padre...</p>
+          <p>Imagina que pudiéramos reunir un montón de átomos idénticos a ti...</p>
+          <p>Porque lo que realmente somos no es la forma, sino la cualidad que habita la forma...</p>
+          <p>Esa cualidad es la herencia divina que nos une...</p>
+          <p>Más temprano que tarde recordaremos que jamás nos separamos...</p>
+          <p>Allí, las palabras callan. La mente descansa. Y solo queda lo que ES.</p>
+          <p class="text-right font-dancing text-2xl text-teal-700 mt-8">Con amor,<br>tu hermano Cristo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERROR -->
+    <div id="explosion-section" class="hidden text-center bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-lg">
+      <svg class="mx-auto h-16 w-16 text-red-500 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3.75h.008v.008H12v-.008zM21 12A9 9 0 113 12a9 9 0 0118 0z" />
+      </svg>
+      <h1 class="font-dancing text-4xl text-red-600 mb-2">La carta se desvaneció...</h1>
+      <p class="text-gray-700 text-lg">Quizás no era el momento. El alma sabrá cuándo volver a abrirla.</p>
+    </div>
+
+  </div>
+
+  <script>
+    const ANSWER_1 = "amor";
+    const ANSWER_2 = "nadie";
+    const ANSWER_3 = "perdonar";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const music = document.getElementById('background-music');
+      const toggle = document.getElementById('music-toggle');
+      let playing = false;
+      toggle.addEventListener('click', () => {
+        if (!playing) { music.play(); toggle.textContent = "⏸️"; playing = true; }
+        else { music.pause(); toggle.textContent = "🎵"; playing = false; }
+      });
+
+      const form = document.getElementById('love-form');
+      const password = document.getElementById('password-section');
+      const letter = document.getElementById('letter-section');
+      const explosion = document.getElementById('explosion-section');
+      const q1 = document.getElementById('question1');
+      const q2 = document.getElementById('question2');
+      const q3 = document.getElementById('question3');
+      const err = document.getElementById('error-message');
+      const hint = document.getElementById('hint-message');
+      const warn = document.getElementById('warning-message');
+      const button = form.querySelector('button');
+      let step = 1;
+      let attempts = 3;
+
+      warn.textContent = `Advertencia: Si fallas ${attempts} veces, la carta se desvanecerá.`;
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        err.textContent = ''; hint.textContent = ''; password.classList.remove('shake');
+        if (attempts <= 0) return;
+
+        if (step === 1) {
+          const ans = document.getElementById('answer1').value.trim().toLowerCase();
+          if (ans === ANSWER_1) {
+            q1.classList.add('hidden'); q2.classList.remove('hidden');
+            button.textContent = "Siguiente"; step = 2;
+          } else fail('Pista: la respuesta vibra en el corazón, no en la mente.');
+        } else if (step === 2) {
+          const selected = document.querySelector('input[name="illumination"]:checked');
+          if (selected && selected.value === ANSWER_2) {
+            q2.classList.add('hidden'); q3.classList.remove('hidden');
+            button.textContent = "Revelar Carta"; step = 3;
+          } else fail('Nadie se ilumina porque ya somos la Luz.');
+        } else if (step === 3) {
+          const selected = document.querySelector('input[name="illusion"]:checked');
+          if (selected && selected.value === ANSWER_3) {
+            password.classList.add('hidden');
+            letter.classList.remove('hidden'); letter.classList.add('fade-in');
+          } else fail('Recuerda: el perdón deshace la ilusión.');
+        }
+
+        function fail(msg){
+          attempts--;
+          password.classList.add('shake');
+          if (attempts > 0){
+            warn.textContent = `Te quedan ${attempts} intento(s).`;
+            err.textContent = 'Esa no es la respuesta correcta.';
+            hint.textContent = msg;
+          } else {
+            password.classList.add('hidden');
+            explosion.classList.remove('hidden'); explosion.classList.add('fade-in');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
