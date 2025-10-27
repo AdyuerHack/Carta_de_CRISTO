@@ -1,87 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Carta a mi Hermano en el Camino</title>
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
   <style>
-    body {
-      font-family: 'EB Garamond', serif;
-      background-color: #e0f7fa;
-      background-image:
-        radial-gradient(at 40% 20%, #a7ffeb 0%, transparent 60%),
-        radial-gradient(at 80% 80%, #b2ebf2 0%, transparent 70%);
-      color: #073642;
-    }
-    .font-dancing { font-family: 'Dancing Script', cursive; }
-    .letter-paper {
-      background: linear-gradient(to bottom right, #ffffff, #e0f2f1);
-      border: 2px solid #c5b358;
-      border-radius: 15px;
-      padding: 2.5rem 3rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    .fade-in {
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .radio-label {
-      display: block;
-      padding: 1rem;
-      border: 1px solid #c5b358;
-      border-radius: 0.5rem;
-      margin-bottom: 0.75rem;
-      cursor: pointer;
-      text-align: left;
-      background-color: #fff;
-      transition: all 0.2s ease;
-    }
-    .radio-label:hover {
-      background-color: #e0f2f1;
-      border-color: #009688;
-    }
-    input[type="radio"]:checked + .radio-label {
-      background-color: #b2dfdb;
-      border-color: #00796b;
-      font-weight: 600;
-    }
-    #music-toggle {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      background-color: #00796b;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 3.2rem;
-      height: 3.2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      z-index: 50;
-    }
-    #music-toggle:hover {
-      background-color: #009688;
-      transform: scale(1.1);
-    }
+    body{font-family:'EB Garamond',serif;background:#e0f7fa;
+      background-image:radial-gradient(at 40% 20%,#a7ffeb 0,transparent 60%),
+                       radial-gradient(at 80% 80%,#b2ebf2 0,transparent 70%);color:#073642}
+    .font-dancing{font-family:'Dancing Script',cursive}
+    .letter-paper{background:linear-gradient(to bottom right,#fff,#e0f2f1);
+      border:2px solid #c5b358;border-radius:15px;padding:2.5rem 3rem;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+    .fade-in{animation:fadeIn 1.2s ease-in-out}@keyframes fadeIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+    .radio-label{display:block;padding:1rem;border:1px solid #c5b358;border-radius:.5rem;margin-bottom:.75rem;cursor:pointer;background:#fff;transition:.2s}
+    .radio-label:hover{background:#e0f2f1;border-color:#009688}
+    input[type="radio"]:checked + .radio-label{background:#b2dfdb;border-color:#00796b;font-weight:600}
+    #music-toggle{position:fixed;top:1.5rem;right:1.5rem;background:#00796b;color:#fff;border:none;border-radius:50%;
+      width:3.2rem;height:3.2rem;box-shadow:0 4px 10px rgba(0,0,0,.3);cursor:pointer;transition:.3s;z-index:50}
+    #music-toggle:hover{background:#009688;transform:scale(1.1)}
+    .shake{animation:shake .5s ease-in-out}@keyframes shake{
+      0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-8px)}
+      20%,40%,60%,80%{transform:translateX(8px)}}
   </style>
 </head>
-
 <body class="flex items-center justify-center min-h-screen">
 
-  <!-- Botón de música -->
+  <!-- Música -->
   <button id="music-toggle" title="Reproducir / Pausar música">🎵</button>
   <audio id="background-music" loop>
     <source src="https://cdn.pixabay.com/audio/2023/07/25/audio_1ec9f15f15.mp3" type="audio/mpeg">
@@ -89,7 +37,7 @@
 
   <div id="container" class="w-full max-w-md mx-auto p-4">
 
-    <!-- PREGUNTAS -->
+    <!-- Preguntas -->
     <div id="password-section" class="text-center bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-lg">
       <svg class="mx-auto h-16 w-16 text-cyan-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25v-16.5m0 0l-8.25 8.25m8.25-8.25l8.25 8.25" />
@@ -99,13 +47,10 @@
       <p id="warning-message" class="text-amber-700 font-semibold mb-4"></p>
 
       <form id="love-form">
-        <!-- Pregunta 1 -->
         <div id="question1">
           <p class="text-teal-700 font-bold text-lg mb-4">¿Qué une verdaderamente a los hijos de Dios?</p>
           <input type="text" id="answer1" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-cyan-400 focus:outline-none transition" placeholder="Tu respuesta aquí...">
         </div>
-
-        <!-- Pregunta 2 -->
         <div id="question2" class="hidden">
           <p class="text-teal-700 font-bold text-lg mb-4">¿Quién se va a iluminar?</p>
           <div>
@@ -114,8 +59,6 @@
             <input type="radio" id="q2a3" name="illumination" value="nadie"><label for="q2a3" class="radio-label">Nadie</label>
           </div>
         </div>
-
-        <!-- Pregunta 3 -->
         <div id="question3" class="hidden">
           <p class="text-teal-700 font-bold text-lg mb-4">¿Qué toca hacer en la ilusión?</p>
           <div>
@@ -125,7 +68,6 @@
             <input type="radio" id="q3a4" name="illusion" value="perdonar"><label for="q3a4" class="radio-label">Perdonar</label>
           </div>
         </div>
-
         <button type="submit" class="w-full bg-cyan-600 text-white font-bold py-3 px-4 rounded-lg mt-4 hover:bg-teal-700 transition-transform transform hover:scale-105">Siguiente</button>
       </form>
 
@@ -133,100 +75,167 @@
       <p id="hint-message" class="text-cyan-800 mt-2 font-semibold h-5"></p>
     </div>
 
-    <!-- CARTA -->
+    <!-- Carta (se rellena dinámicamente tras descifrar) -->
     <div id="letter-section" class="hidden fade-in">
       <div class="letter-paper">
         <h2 class="font-dancing text-4xl text-teal-700 mb-6">Carta a mi hermano en el camino</h2>
-        <div class="text-gray-800 text-lg leading-relaxed space-y-4">
-          <p>Cada vez que me pregunto quién soy, me pierdo en las sombras de lo que creo ser...</p>
-          <p>Entonces recuerdo... que estoy con mi Padre...</p>
-          <p>Imagina que pudiéramos reunir un montón de átomos idénticos a ti...</p>
-          <p>Porque lo que realmente somos no es la forma, sino la cualidad que habita la forma...</p>
-          <p>Esa cualidad es la herencia divina que nos une...</p>
-          <p>Más temprano que tarde recordaremos que jamás nos separamos...</p>
-          <p>Allí, las palabras callan. La mente descansa. Y solo queda lo que ES.</p>
-          <p class="text-right font-dancing text-2xl text-teal-700 mt-8">Con amor,<br>tu hermano Cristo.</p>
-        </div>
+        <div id="letter-content" class="text-gray-800 text-lg leading-relaxed space-y-4"></div>
       </div>
     </div>
 
-    <!-- ERROR -->
+    <!-- Desvanecida -->
     <div id="explosion-section" class="hidden text-center bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-lg">
       <svg class="mx-auto h-16 w-16 text-red-500 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3.75h.008v.008H12v-.008zM21 12A9 9 0 113 12a9 9 0 0118 0z" />
       </svg>
-      <h1 class="font-dancing text-4xl text-red-600 mb-2">La carta se desvaneció...</h1>
-      <p class="text-gray-700 text-lg">Quizás no era el momento. El alma sabrá cuándo volver a abrirla.</p>
+      <h1 class="font-dancing text-4xl text-red-600 mb-2">La carta se desvaneció…</h1>
+      <p class="text-gray-700 text-lg">Haz paz y vuelve en 30 días. El alma sabrá cuándo abrirla de nuevo.</p>
     </div>
 
   </div>
 
   <script>
+    // ========= CIFRADO (TUS VALORES) =========
+    const ENC = {
+      salt_b64: "kjk8BW6kyiFhss+KcnLK7Q==",
+      iv_b64:   "3NxkEQLN4+L3Uxjc",
+      ct_b64:   "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",
+      tag_b64:  "KAe+Yw7vm7gpFO99qSWu2A==",
+      iterations: 150000
+    };
+
+    // ========= PARAMS / ESTADO =========
+    const LOCK_KEY = "carta_lock_v1";
+    const MAX_ATTEMPTS = 3;
+    const LOCK_DAYS = 30;
+
     const ANSWER_1 = "amor";
     const ANSWER_2 = "nadie";
     const ANSWER_3 = "perdonar";
 
+    // ========= UTILS =========
+    const te = new TextEncoder();
+    const td = new TextDecoder();
+
+    function addDays(date, days){ const d=new Date(date); d.setDate(d.getDate()+days); return d; }
+    function isLocked(){
+      try{ const raw=localStorage.getItem(LOCK_KEY); if(!raw) return false;
+        const o=JSON.parse(raw); return new Date(o.expiresAt)>new Date(); }catch{ return false; }
+    }
+    function lockNow(){
+      const expiresAt = addDays(new Date(), LOCK_DAYS).toISOString();
+      localStorage.setItem(LOCK_KEY, JSON.stringify({locked:true, expiresAt}));
+    }
+    function base64ToBytes(b64){
+      const bin = atob(b64); const len = bin.length; const bytes = new Uint8Array(len);
+      for (let i=0;i<len;i++) bytes[i]=bin.charCodeAt(i);
+      return bytes;
+    }
+
+    // PBKDF2 -> AES-GCM key
+    async function deriveKeyFromAnswers(ans1, ans2, ans3){
+      // El orden y separador deben coincidir con el cifrado
+      const passphrase = `${ans1}|${ans2}|${ans3}`;
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw", te.encode(passphrase), {name:"PBKDF2"}, false, ["deriveKey"]
+      );
+      const key = await crypto.subtle.deriveKey(
+        {name:"PBKDF2", salt: base64ToBytes(ENC.salt_b64), iterations: ENC.iterations, hash:"SHA-256"},
+        keyMaterial,
+        {name:"AES-GCM", length:256},
+        false,
+        ["decrypt"]
+      );
+      return key;
+    }
+
+    async function decryptLetter(ans1, ans2, ans3){
+      const key = await deriveKeyFromAnswers(ans1, ans2, ans3);
+      // AES-GCM (WebCrypto) espera ct||tag juntos
+      const ct = base64ToBytes(ENC.ct_b64);
+      const tag = base64ToBytes(ENC.tag_b64);
+      const ctAndTag = new Uint8Array(ct.length + tag.length);
+      ctAndTag.set(ct, 0); ctAndTag.set(tag, ct.length);
+
+      const iv = base64ToBytes(ENC.iv_b64);
+      const plaintextBuf = await crypto.subtle.decrypt(
+        {name:"AES-GCM", iv, tagLength:128}, key, ctAndTag
+      );
+      return td.decode(new Uint8Array(plaintextBuf));
+    }
+
+    function showVanish(){
+      document.getElementById('password-section')?.classList.add('hidden');
+      const exp = document.getElementById('explosion-section');
+      exp?.classList.remove('hidden'); exp?.classList.add('fade-in');
+    }
+
+    // ========= APP =========
     document.addEventListener('DOMContentLoaded', () => {
+      // Música
       const music = document.getElementById('background-music');
       const toggle = document.getElementById('music-toggle');
-      let playing = false;
-      toggle.addEventListener('click', () => {
-        if (!playing) { music.play(); toggle.textContent = "⏸️"; playing = true; }
-        else { music.pause(); toggle.textContent = "🎵"; playing = false; }
-      });
+      let playing=false; toggle.addEventListener('click',()=>{ if(!playing){music.play();toggle.textContent="⏸️";playing=true;} else {music.pause();toggle.textContent="🎵";playing=false;} });
+
+      if (isLocked()){ showVanish(); return; }
 
       const form = document.getElementById('love-form');
       const password = document.getElementById('password-section');
       const letter = document.getElementById('letter-section');
-      const explosion = document.getElementById('explosion-section');
+      const letterContent = document.getElementById('letter-content');
+
       const q1 = document.getElementById('question1');
       const q2 = document.getElementById('question2');
       const q3 = document.getElementById('question3');
+
       const err = document.getElementById('error-message');
       const hint = document.getElementById('hint-message');
       const warn = document.getElementById('warning-message');
       const button = form.querySelector('button');
+
       let step = 1;
-      let attempts = 3;
+      let attempts = parseInt(sessionStorage.getItem('attempts')||"0",10);
+      warn.textContent = `Advertencia: Si fallas ${MAX_ATTEMPTS - attempts} vez/veces, la carta se desvanecerá 30 días.`;
 
-      warn.textContent = `Advertencia: Si fallas ${attempts} veces, la carta se desvanecerá.`;
-
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        err.textContent = ''; hint.textContent = ''; password.classList.remove('shake');
-        if (attempts <= 0) return;
-
-        if (step === 1) {
-          const ans = document.getElementById('answer1').value.trim().toLowerCase();
-          if (ans === ANSWER_1) {
-            q1.classList.add('hidden'); q2.classList.remove('hidden');
-            button.textContent = "Siguiente"; step = 2;
-          } else fail('Pista: la respuesta vibra en el corazón, no en la mente.');
-        } else if (step === 2) {
-          const selected = document.querySelector('input[name="illumination"]:checked');
-          if (selected && selected.value === ANSWER_2) {
-            q2.classList.add('hidden'); q3.classList.remove('hidden');
-            button.textContent = "Revelar Carta"; step = 3;
-          } else fail('Nadie se ilumina porque ya somos la Luz.');
-        } else if (step === 3) {
-          const selected = document.querySelector('input[name="illusion"]:checked');
-          if (selected && selected.value === ANSWER_3) {
-            password.classList.add('hidden');
-            letter.classList.remove('hidden'); letter.classList.add('fade-in');
-          } else fail('Recuerda: el perdón deshace la ilusión.');
+      function bumpFail(msg){
+        attempts++; sessionStorage.setItem('attempts', String(attempts));
+        const left = MAX_ATTEMPTS - attempts;
+        password.classList.add('shake');
+        if (left > 0){
+          warn.textContent = `Te quedan ${left} intento(s).`;
+          err.textContent = 'Respuesta incorrecta.'; hint.textContent = msg||'';
+        } else {
+          lockNow(); showVanish();
         }
+      }
 
-        function fail(msg){
-          attempts--;
-          password.classList.add('shake');
-          if (attempts > 0){
-            warn.textContent = `Te quedan ${attempts} intento(s).`;
-            err.textContent = 'Esa no es la respuesta correcta.';
-            hint.textContent = msg;
-          } else {
-            password.classList.add('hidden');
-            explosion.classList.remove('hidden'); explosion.classList.add('fade-in');
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault(); err.textContent=''; hint.textContent=''; password.classList.remove('shake');
+        if (isLocked()) { showVanish(); return; }
+
+        try{
+          if (step===1){
+            const ans = document.getElementById('answer1').value.trim().toLowerCase();
+            if (ans === ANSWER_1){ q1.classList.add('hidden'); q2.classList.remove('hidden'); button.textContent="Siguiente"; step=2; }
+            else bumpFail('Pista: vibra en el corazón, no en la mente.');
+          } else if (step===2){
+            const sel = document.querySelector('input[name="illumination"]:checked');
+            if (sel && sel.value===ANSWER_2){ q2.classList.add('hidden'); q3.classList.remove('hidden'); button.textContent="Revelar Carta"; step=3; }
+            else bumpFail('Nadie “se ilumina”: se recuerda la Luz que ya somos.');
+          } else if (step===3){
+            const sel = document.querySelector('input[name="illusion"]:checked');
+            if (sel && sel.value===ANSWER_3){
+              const text = await decryptLetter(ANSWER_1, ANSWER_2, ANSWER_3);
+              sessionStorage.removeItem('attempts');
+              letterContent.innerHTML = text
+                .split(/\n\s*\n/).map(p=>`<p>${p.replace(/\n/g,' ')}</p>`).join('');
+              password.classList.add('hidden');
+              letter.classList.remove('hidden'); letter.classList.add('fade-in');
+            } else bumpFail('El perdón deshace la ilusión.');
           }
+        } catch (ex){
+          // Si falla el descifrado por clave incorrecta, cuenta como fallo
+          bumpFail('Las respuestas no coinciden con la llave del corazón.');
         }
       });
     });
