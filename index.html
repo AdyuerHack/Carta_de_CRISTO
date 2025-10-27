@@ -195,7 +195,7 @@
 
       let step = 1;
       let attempts = parseInt(sessionStorage.getItem('attempts')||"0",10);
-      warn.textContent = `Advertencia: Si fallas ${MAX_ATTEMPTS - attempts} vez/veces, la carta se desvanecerá 30 días.`;
+      warn.textContent = `Advertencia: Si fallas ${MAX_ATTEMPTS - attempts} veces la carta se desvanecerá 90 dias`;
 
       function bumpFail(msg){
         attempts++; sessionStorage.setItem('attempts', String(attempts));
